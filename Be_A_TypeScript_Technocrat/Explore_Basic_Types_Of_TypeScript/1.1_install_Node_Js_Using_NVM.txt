@@ -1,0 +1,50 @@
+NVM (Node Version Manager) হলো একটি টুল, যার মাধ্যমে তুমি সহজে একাধিক
+ Node.js version install, manage এবং switch করতে পারো।
+
+🔹 সহজভাবে বুঝি
+
+ধরো তুমি দুইটা project নিয়ে কাজ করছো:
+
+Project A → Node.js v14 দরকার
+Project B → Node.js v20 দরকার
+
+এখন যদি তুমি manually Node uninstall/install করতে যাও, সেটা খুব ঝামেলার 😵
+
+👉 এখানেই NVM কাজে লাগে।
+
+🔹 NVM কি করে?
+
+NVM তোমাকে এই সুবিধাগুলো দেয়:
+
+1. একাধিক Node.js version install করা
+nvm install 14
+nvm install 20
+2. version switch করা (instant)
+nvm use 14
+nvm use 20
+3. কোন version গুলো আছে দেখা
+nvm ls
+4. default version সেট করা
+nvm alias default 20
+🔹 Real Life Example
+
+তুমি যদি React project বানাও → নতুন Node দরকার
+আর পুরানো backend project → পুরানো Node দরকার
+
+👉 NVM থাকলে এক command দিয়েই switch করতে পারবা
+
+🔹 কেন NVM important?
+
+✔ Dependency conflict এড়ায়
+✔ Different project easily handle করা যায়
+✔ Safe testing (নতুন version test করতে পারো)
+✔ Developer productivity বাড়ায় 🚀
+
+🔹 Windows vs Linux/Mac
+Linux/Mac → nvm (official)
+Windows → nvm-windows (separate version)
+🔹 Summary
+
+👉 NVM = Node.js version manager
+👉 একাধিক Node version manage করার easiest way
+👉 Developers এর জন্য must-have tool
