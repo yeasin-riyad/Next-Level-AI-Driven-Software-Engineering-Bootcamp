@@ -12,7 +12,7 @@ const getDashboard = (role: UserRole) => {
   }
 };
 
-getDashboard("guest");
+// getDashboard("guest");
 
 // intersection &
 

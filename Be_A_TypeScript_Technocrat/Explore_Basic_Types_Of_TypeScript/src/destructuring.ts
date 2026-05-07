@@ -1,7 +1,7 @@
 // object destructuring
 // array destructuring
 
-const user = {
+const user44 = {
   id: 123,
   name: {
     firstName: "Mezbaul",
@@ -12,18 +12,18 @@ const user = {
   favouriteColor: "black",
 };
 
-//const myFavouriteColor = user.favouriteColor
-//const myMiddleName = user.name.middleName
+//const myFavouriteColor = user44.favouriteColor
+//const myMiddleName = user44.name.middleName
 
 const {
   favouriteColor,
   name: { middleName: myMiddleName },
-} = user;
+} = user44;
 
 //console.log(myMiddleName);
 
-const friends = ["karim", "Rahim", "Mahim"];
+const friends44 = ["karim", "Rahim", "Mahim"];
 
-const [, , myBestFriend] = friends;
+const [, , myBestFriend] = friends44;
 
 console.log(myBestFriend);

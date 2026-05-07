@@ -5,13 +5,13 @@
 
 let userName: string = "mezba123";
 
-let userId = 123;
+let userId: number = 123;
 
 
 // userName.toFixed();
 userId.toFixed();
 
-let isAdmin: boolean = false;
-isAdmin = true;
+let isAdmin12: boolean = false;
+isAdmin12 = true;
 
 let x: undefined = undefined;

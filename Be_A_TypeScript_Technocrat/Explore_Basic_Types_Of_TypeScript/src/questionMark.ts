@@ -32,7 +32,7 @@ console.log({ resultWithTernary }, { resultWithNulish });
 
 //optional chaining
 
-const user: {
+const user55: {
   address: {
     city: string;
     town: string;
@@ -45,5 +45,5 @@ const user: {
   },
 };
 
-const postalCode = user?.address?.postalCode;
+const postalCode = user55?.address?.postalCode;
 console.log(postalCode);

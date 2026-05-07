@@ -18,6 +18,11 @@ const kgToGMConverter = (
   }
 };
 
+// 🧠 1. as keyword কী?
+// TypeScript-এ as মানে type assertion
+// 👉 “আমি compiler-কে বলছি—এই value-টা এই type হিসেবে ধরো”
+// value as Type
+
 const result1 = kgToGMConverter(2) as number;
 
 console.log({ result1 });

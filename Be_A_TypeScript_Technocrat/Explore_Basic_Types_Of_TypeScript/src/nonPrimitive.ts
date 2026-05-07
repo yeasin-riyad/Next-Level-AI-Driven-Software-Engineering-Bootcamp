@@ -33,7 +33,7 @@ let destination: [string, string, number] = ["Dhaka", "Chattogram", 3];
 
 // user.organization = "Programming Hero Fire";
 
-const user: {
+const user66: {
   readonly organization: string; // access modifier
   firstName: string;
   middleName?: string; // optional type
@@ -48,6 +48,6 @@ const user: {
 
 // user.organization = "Programming Hero Fire";
 
-console.log(user);
+console.log(user66);
 
-// console.log(user);
+// console.log(user66);

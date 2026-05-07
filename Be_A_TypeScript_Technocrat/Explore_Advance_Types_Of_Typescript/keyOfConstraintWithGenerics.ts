@@ -1,16 +1,16 @@
 // keyof : type operator
 
-type RichPeoplesVehicle = {
+type RichPeoplesVehicle44 = {
   car: string; // key: value
   bike: string;
   cng: string;
 };
 
-type MyVehicle1 = "bike" | "car" | "cng";
+type MyVehicle19 = "bike" | "car" | "cng";
 // Or
-type Myvehicle2 = keyof RichPeoplesVehicle;
+type Myvehicle27 = keyof RichPeoplesVehicle44;
 
-const myVehicle: Myvehicle2 = "ship";
+// const myVehicle90: Myvehicle27 = "ship";
 
 type User1 = {
   id: number;

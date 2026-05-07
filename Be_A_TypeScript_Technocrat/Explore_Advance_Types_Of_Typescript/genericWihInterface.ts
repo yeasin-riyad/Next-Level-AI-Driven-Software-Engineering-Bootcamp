@@ -56,6 +56,6 @@ const richDeveloper: Developer<AppleWatch> = {
   bike: null,
 };
 
-const add = (num1: number, num2: number = 0) => num1 + num2;
+const add11 = (num1: number, num2: number = 0) => num1 + num2;
 
-add(2);
+add11(2);

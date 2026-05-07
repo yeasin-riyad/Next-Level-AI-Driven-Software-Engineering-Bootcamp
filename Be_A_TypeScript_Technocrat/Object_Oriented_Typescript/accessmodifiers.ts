@@ -23,13 +23,13 @@ class BankAccount {
 
 class StudentBankAccount extends BankAccount {
   test() {
-    this._userBalance;   // ❌ private access not allowed
+    // this._userBalance;   // ❌ private access not allowed
   }
 }
 
 const mezbaBhaiAccount = new BankAccount(111, "Mezba", 20);
 
-mezbaBhaiAccount.addBalance(100);
-mezbaBhaiAccount.addBalance(50);
+// mezbaBhaiAccount.addBalance(100);
+// mezbaBhaiAccount.addBalance(50);
 
 console.log(mezbaBhaiAccount);
