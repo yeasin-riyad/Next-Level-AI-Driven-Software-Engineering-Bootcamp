@@ -17,9 +17,9 @@
 
 # 🎥 Video Tutorial
 
-Click the thumbnail below to watch the full explanation on YouTube.
+Click the thumbnail below to watch the video.
 
-[![Process and Thread in Bangla](https://img.youtube.com/vi/os7KcmJvtN4/maxresdefault.jpg)]([https://www.youtube.com/watch?v=os7KcmJvtN4](https://youtu.be/os7KcmJvtN4?si=wbw9WBpS197TN1dX))
+[![Process and Thread in Bangla](https://img.youtube.com/vi/os7KcmJvtN4/maxresdefault.jpg)](https://youtu.be/os7KcmJvtN4?si=wbw9WBpS197TN1dX)
 
 ---
 
