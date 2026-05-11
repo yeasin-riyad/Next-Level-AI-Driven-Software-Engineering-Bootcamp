@@ -13,7 +13,7 @@ export const RouteHandler=(req:IncomingMessage,res:ServerResponse)=>{
             //we can send any type of response to the client like text, json, html, etc.
         res.writeHead(200,{"Content-Type":"text/plain"}); // status code 200 means everything is ok
         res.end("This is Root Route");
-    }else if(url === '/products' && method === 'GET'){
+    }else if(url?.startsWith('/products') && method === 'GET'){
         ProductController(req,res);
       
     }
