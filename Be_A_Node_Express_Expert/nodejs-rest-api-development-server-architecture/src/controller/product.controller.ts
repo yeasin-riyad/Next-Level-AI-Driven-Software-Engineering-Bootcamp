@@ -15,33 +15,45 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
 
     // Get all products
     if(url === '/products' && method === 'GET'){
-      res.writeHead(200,{"Content-Type":"application/json"}); 
-        res.end(JSON.stringify({message: "This is Products Route", data}));
+        try {
+            const products = readProducts();
+            sendResponse(res,"Products retrieved successfully",200,products,true);
+        } catch (error) {
+            sendResponse(res,"Failed to retrieve products",500,null,false);
+        }
     }
 
    
 
     // Get a single product by id
     if(productId && urlParts[1] === "products" && method === 'GET'){
-        const product = data.find((item:IProduct)=> item.id === productId);
+        try{
+          const product = data.find((item:IProduct)=> item.id === productId);
         if(product){
-            sendResponse(res,"Product found",200,product,true);
+          return  sendResponse(res,"Product found",200,product,true);
         } else {
-            sendResponse(res,"Product not found",404,null,false);
+          return  sendResponse(res,"Product not found",404,null,false);
+        }
+        }catch(error){
+          return  sendResponse(res,"Failed to retrieve product",500,null,false);
         }
     }
 
 
          //Create a new product
    if(url === '/products' && method === 'POST'){
-        // Implementation for creating a new product
+        try {
+          // Implementation for creating a new product
         const body=await parseBody(req);
         const newProduct: IProduct = {
             id: data.length + 1, // Simple ID generation logic
             ...body
         };
         insertProduct(newProduct);
-        sendResponse(res,"Product created",201,newProduct,true);
+      return   sendResponse(res,"Product created",201,newProduct,true);
+        } catch (error) {
+          return  sendResponse(res,"Failed to create product",500,null,false);
+        }
     }
 
     //Implement PUT Method for updating a product
@@ -49,9 +61,9 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
         const body=await parseBody(req);
         const updatedProduct = await updateProduct(productId, body);
         if(updatedProduct){
-           sendResponse(res,"Product updated",200,updatedProduct,true);
+           return sendResponse(res,"Product updated",200,updatedProduct,true);
         } else {
-            sendResponse(res,"Product not found",404,null,false);
+            return sendResponse(res,"Product not found",404,null,false);
         }
     }
 
@@ -60,9 +72,9 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
         // Implementation for deleting a product
         const deletedProduct = deleteProduct(productId);
         if(deletedProduct){
-            sendResponse(res,"Product deleted",200,deletedProduct,true);
+            return sendResponse(res,"Product deleted",200,deletedProduct,true);
         } else {
-            sendResponse(res,"Product not found",404,null,false);
+            return sendResponse(res,"Product not found",404,null,false);
         }
     }
 
