@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { deleteProduct, insertProduct, readProducts, updateProduct } from "../service/product.service";
 import { IProduct } from "../types/product.types";
 import { parseBody } from "../utility/parseBody";
+import { sendResponse } from "../utility/sendResponse";
 
 export const ProductController = async (req:IncomingMessage,res:ServerResponse)=>{
     const url = req.url;
@@ -24,11 +25,9 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
     if(productId && urlParts[1] === "products" && method === 'GET'){
         const product = data.find((item:IProduct)=> item.id === productId);
         if(product){
-            res.writeHead(200,{"Content-Type":"application/json"});
-            res.end(JSON.stringify({message: "Product found", data: product}));
+            sendResponse(res,"Product found",200,product,true);
         } else {
-            res.writeHead(404,{"Content-Type":"application/json"});
-            res.end(JSON.stringify({message: "Product not found"}));
+            sendResponse(res,"Product not found",404,null,false);
         }
     }
 
@@ -42,8 +41,7 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
             ...body
         };
         insertProduct(newProduct);
-        res.writeHead(201,{"Content-Type":"application/json"});
-        res.end(JSON.stringify({message: "Product created", data: newProduct}));
+        sendResponse(res,"Product created",201,newProduct,true);
     }
 
     //Implement PUT Method for updating a product
@@ -51,11 +49,9 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
         const body=await parseBody(req);
         const updatedProduct = await updateProduct(productId, body);
         if(updatedProduct){
-            res.writeHead(200,{"Content-Type":"application/json"});
-            res.end(JSON.stringify({message: "Product updated", data: updatedProduct}));
+           sendResponse(res,"Product updated",200,updatedProduct,true);
         } else {
-            res.writeHead(404,{"Content-Type":"application/json"});
-            res.end(JSON.stringify({message: "Product not found"}));
+            sendResponse(res,"Product not found",404,null,false);
         }
     }
 
@@ -64,11 +60,9 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
         // Implementation for deleting a product
         const deletedProduct = deleteProduct(productId);
         if(deletedProduct){
-            res.writeHead(200,{"Content-Type":"application/json"});
-            res.end(JSON.stringify({message: "Product deleted", data: deletedProduct}));
+            sendResponse(res,"Product deleted",200,deletedProduct,true);
         } else {
-            res.writeHead(404,{"Content-Type":"application/json"});
-            res.end(JSON.stringify({message: "Product not found"}));
+            sendResponse(res,"Product not found",404,null,false);
         }
     }
 
