@@ -29,3 +29,15 @@ export const updateProduct = (id:number, updatedProduct:Partial<IProduct>)=>{
         return null;
     }   
 }
+
+export const deleteProduct = (id:number)=>{
+    const products = readProducts();
+    const productIndex = products.findIndex((item:IProduct)=> item.id === id);
+    if(productIndex !== -1){
+        const deletedProduct = products.splice(productIndex, 1)[0]; 
+        fs.writeFileSync(filePath,JSON.stringify(products));
+        return deletedProduct;
+    } else {
+        return null;
+    }
+}
