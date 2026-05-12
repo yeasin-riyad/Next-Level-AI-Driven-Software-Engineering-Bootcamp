@@ -17,3 +17,15 @@ export const insertProduct = (product:IProduct)=>{
     fs.writeFileSync(filePath,JSON.stringify(products)); // this will write the updated products array back to the file
     return product;
 }
+
+export const updateProduct = (id:number, updatedProduct:Partial<IProduct>)=>{
+    const products = readProducts();
+    const productIndex = products.findIndex((item:IProduct)=> item.id === id);  
+    if(productIndex !== -1){
+        products[productIndex] = { ...products[productIndex], ...updatedProduct };
+        fs.writeFileSync(filePath,JSON.stringify(products));
+        return products[productIndex];
+    } else {
+        return null;
+    }   
+}

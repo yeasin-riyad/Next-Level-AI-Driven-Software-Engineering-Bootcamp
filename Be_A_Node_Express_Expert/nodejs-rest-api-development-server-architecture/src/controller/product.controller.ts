@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { insertProduct, readProducts } from "../service/product.service";
+import { insertProduct, readProducts, updateProduct } from "../service/product.service";
 import { IProduct } from "../types/product.types";
 import { parseBody } from "../utility/parseBody";
 
@@ -46,5 +46,17 @@ export const ProductController = async (req:IncomingMessage,res:ServerResponse)=
         res.end(JSON.stringify({message: "Product created", data: newProduct}));
     }
 
-    
+    //Implement PUT Method for updating a product
+    if(productId && urlParts[1] === "products" && method === 'PUT'){
+        const body=await parseBody(req);
+        const updatedProduct = await updateProduct(productId, body);
+        if(updatedProduct){
+            res.writeHead(200,{"Content-Type":"application/json"});
+            res.end(JSON.stringify({message: "Product updated", data: updatedProduct}));
+        } else {
+            res.writeHead(404,{"Content-Type":"application/json"});
+            res.end(JSON.stringify({message: "Product not found"}));
+        }
+    }
+
 };
