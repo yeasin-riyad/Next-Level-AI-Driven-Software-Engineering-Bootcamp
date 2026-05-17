@@ -6,7 +6,8 @@ dotenv.config({
 
 const config = {
   connection_string: process.env.POSTGRESQL_CONNECTION_STRING as string,
-  port: process.env.PORT
+  port: process.env.PORT as string,
+  secret: process.env.SECRET_KEY as string,
 };
 
 export default config;

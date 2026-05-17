@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import bcrypt from "bcryptjs";
 import { pool } from "../../db";
 import { createUserIntoDB, deleteUserByIdFromDB, getAllUsersFromDB, getUserByIdFromDB, updateUserByIdFromDB } from "./user.service";
 import type { IUser } from "./user.interface";
@@ -6,8 +7,10 @@ import type { IUser } from "./user.interface";
 export const createUser=async(req:Request,res:Response)=>{
    try{
      const {email,name,password,age} = req.body;
-     const payload={email,name,password,age}
+     const hashedPassword = await bcrypt.hash(password, 10);
+     const payload={email,name,password:hashedPassword,age}
     const result =await createUserIntoDB(payload);
+    delete result.rows[0].password; // Remove password from the response
     res.status(201).json({
         "message":"Data received successfully",
         "data":result.rows[0]
@@ -24,6 +27,9 @@ export const createUser=async(req:Request,res:Response)=>{
 export const getAllUsers=async(req:Request,res:Response)=>{
     try{
         const result = await getAllUsersFromDB();
+        result.rows.forEach((row) => {
+            delete row.password;
+        });
         res.status(200).json({
             "message":"Users retrieved successfully",
             "data":result.rows
@@ -45,6 +51,7 @@ export const getUserById=async(req:Request,res:Response)=>{
                 "message":"User not found"
             })
         }else{
+            delete result.rows[0].password; // Remove password from the response
             res.status(200).json({
                 "message":"User retrieved successfully",
                 "data":result.rows[0]
@@ -61,9 +68,9 @@ export const getUserById=async(req:Request,res:Response)=>{
 export const updateUserById=async(req:Request,res:Response)=>{
     const userId = req.params.id as string;
     const {email,name,password,age} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
     const payload:IUser={
-        email,name,password,age,userId
-
+        email,name,password:hashedPassword,age,userId
     }
     try{
         const result=await updateUserByIdFromDB(payload)
@@ -72,6 +79,7 @@ export const updateUserById=async(req:Request,res:Response)=>{
                 "message":"User not found"
             })
         }else{
+            delete result.rows[0].password; // Remove password from the response
             res.status(200).json({
                 "message":"User updated successfully",
                 "data":result.rows[0]
