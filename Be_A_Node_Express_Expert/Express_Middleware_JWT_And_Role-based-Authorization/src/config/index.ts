@@ -1,0 +1,13 @@
+import dotenv from "dotenv";
+import path from "path";
+dotenv.config({
+  path: path.join(process.cwd(), ".env"),
+});
+
+const config = {
+  connection_string: process.env.POSTGRESQL_CONNECTION_STRING as string,
+  port: process.env.PORT as string,
+  secret: process.env.SECRET_KEY as string,
+};
+
+export default config;
