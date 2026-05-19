@@ -41,7 +41,6 @@ export const getAllUsers=async(req:Request,res:Response)=>{
           data: result.rows
         });
     }catch(error){
-      
         sendResponse(res, {
           statusCode: 500,
           success: false,
