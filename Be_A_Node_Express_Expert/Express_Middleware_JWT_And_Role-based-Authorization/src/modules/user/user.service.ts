@@ -2,10 +2,11 @@ import { pool } from "../../db";
 import type { IUser } from "./user.interface";
 
 
-export const createUserIntoDB=async({name,email,password,age}:IUser)=>{
+
+export const createUserIntoDB=async({name,email,password,age,role}:IUser)=>{
     const result = await pool.query(
-        `INSERT INTO users (name,email,password,age) VALUES ($1,$2,$3,$4) RETURNING *`,
-        [name,email,password,age]
+        `INSERT INTO users (name,email,password,age,role) VALUES ($1,$2,$3,$4,COALESCE($5,'user')) RETURNING *`,
+        [name,email,password,age,role]
     );
     return result;
 }

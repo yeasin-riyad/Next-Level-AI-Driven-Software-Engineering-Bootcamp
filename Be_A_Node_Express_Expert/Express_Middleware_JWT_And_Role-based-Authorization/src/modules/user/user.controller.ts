@@ -1,14 +1,14 @@
 import type { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import { pool } from "../../db";
 import { createUserIntoDB, deleteUserByIdFromDB, getAllUsersFromDB, getUserByIdFromDB, updateUserByIdFromDB } from "./user.service";
 import type { IUser } from "./user.interface";
 
 export const createUser=async(req:Request,res:Response)=>{
    try{
-     const {email,name,password,age} = req.body;
-     const hashedPassword = await bcrypt.hash(password, 10);
-     const payload={email,name,password:hashedPassword,age}
+     const {email,name,password,age,role} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+     const payload={email,name,password:hashedPassword,age,role}
+     
     const result =await createUserIntoDB(payload);
     delete result.rows[0].password; // Remove password from the response
     res.status(201).json({

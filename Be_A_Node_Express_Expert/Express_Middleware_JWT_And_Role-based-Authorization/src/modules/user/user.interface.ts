@@ -4,5 +4,6 @@ export interface IUser{
     password:string,
     age:number,
     is_active?:boolean,
-    userId?:string
+    userId?:string,
+    role?:string
 }
