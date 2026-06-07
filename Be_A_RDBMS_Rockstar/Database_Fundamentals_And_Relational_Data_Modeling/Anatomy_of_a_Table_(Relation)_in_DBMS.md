@@ -1,14 +1,14 @@
-# 📚 Anatomy of a Table (Relation) in DBMS
+# 📚 DBMS-এ একটি Table (Relation)-এর গঠন
 
-## 🎯 Introduction
+## 🎯 ভূমিকা
 
-In a Relational Database Management System (RDBMS), data is stored in the form of **Tables (Relations)**. Understanding the anatomy of a table is one of the most important concepts in Database Design and DBMS interviews.
+Relational Database Management System (RDBMS)-এ ডেটা **Table (Relation)** আকারে সংরক্ষণ করা হয়। Database Design এবং DBMS Interview-এর জন্য একটি Table-এর গঠন (Anatomy of a Table) বোঝা অত্যন্ত গুরুত্বপূর্ণ।
 
-A table consists of rows and columns that represent data in a structured format.
+একটি Table মূলত **Rows (সারি)** এবং **Columns (কলাম)** নিয়ে গঠিত, যেখানে Structured Format-এ Data সংরক্ষণ করা হয়।
 
 ---
 
-# 📊 Example Relation: Students
+# 📊 উদাহরণ: Students Relation
 
 | StudentID | Name   | Department | GPA  |
 | --------- | ------ | ---------- | ---- |
@@ -18,13 +18,13 @@ A table consists of rows and columns that represent data in a structured format.
 
 ---
 
-# 🏗 Anatomy of a Table
+# 🏗 একটি Relation-এর প্রধান অংশসমূহ
 
-A relational table consists of the following components:
+একটি Relational Table-এর নিম্নলিখিত উপাদান থাকে:
 
 1. Relation Name
-2. Attributes
-3. Tuples
+2. Attribute (Column)
+3. Tuple (Row)
 4. Domain
 5. Degree
 6. Cardinality
@@ -33,62 +33,62 @@ A relational table consists of the following components:
 
 # 1️⃣ Relation Name
 
-The name of a table is called the **Relation Name**.
+Table-এর নামকে **Relation Name** বলা হয়।
 
-### Example
+### উদাহরণ
 
 ```text
 Students
 ```
 
-Here, **Students** is the relation name.
+এখানে **Students** হলো Relation Name।
 
 ---
 
-# 2️⃣ Attributes (Columns)
+# 2️⃣ Attribute (Column)
 
-Each column in a table is called an **Attribute**.
+Table-এর প্রতিটি Column-কে **Attribute** বলা হয়।
 
-### Example
+### উদাহরণ
 
 | StudentID | Name | Department | GPA |
 
-Attributes are:
+এখানে Attribute গুলো হলো:
 
 * StudentID
 * Name
 * Department
 * GPA
 
-### Key Point
+### গুরুত্বপূর্ণ বিষয়
 
-> Attributes describe the properties of an entity.
+> Attribute একটি Entity-এর বৈশিষ্ট্য (Property) বর্ণনা করে।
 
 ---
 
-# 3️⃣ Tuples (Rows)
+# 3️⃣ Tuple (Row)
 
-Each row in a table is called a **Tuple**.
+Table-এর প্রতিটি Row-কে **Tuple** বলা হয়।
 
-### Example
+### উদাহরণ
 
 | StudentID | Name  | Department | GPA  |
 | --------- | ----- | ---------- | ---- |
 | 1         | Rahim | CSE        | 3.80 |
 
-This entire row represents one tuple.
+উপরের সম্পূর্ণ Row-টি একটি Tuple।
 
-### Key Point
+### গুরুত্বপূর্ণ বিষয়
 
-> A tuple represents a single record in a relation.
+> Tuple একটি Record বা Data Entry নির্দেশ করে।
 
 ---
 
 # 4️⃣ Domain
 
-A **Domain** defines the set of valid values that an attribute can contain.
+কোনো Attribute-এর জন্য অনুমোদিত (Valid) Value-এর সেটকে **Domain** বলা হয়।
 
-### Example
+### উদাহরণ
 
 | Attribute  | Domain              |
 | ---------- | ------------------- |
@@ -97,27 +97,27 @@ A **Domain** defines the set of valid values that an attribute can contain.
 | Department | String              |
 | GPA        | Float (0.00 - 4.00) |
 
-### Key Point
+### গুরুত্বপূর্ণ বিষয়
 
-> Domain ensures data integrity by restricting invalid values.
+> Domain Data Integrity নিশ্চিত করে এবং Invalid Data প্রবেশ করা থেকে রক্ষা করে।
 
 ---
 
 # 5️⃣ Degree
 
-The number of attributes (columns) in a relation is called its **Degree**.
+একটি Relation-এ মোট কতটি Column (Attribute) আছে তাকে **Degree** বলা হয়।
 
-### Example
+### উদাহরণ
 
 | StudentID | Name | Department | GPA |
 
-Number of columns = 4
+মোট Column = 4
 
 ```text
 Degree = 4
 ```
 
-### Formula
+### সূত্র
 
 ```text
 Degree = Total Number of Columns
@@ -127,9 +127,9 @@ Degree = Total Number of Columns
 
 # 6️⃣ Cardinality
 
-The number of tuples (rows) in a relation is called its **Cardinality**.
+একটি Relation-এ মোট কতটি Row (Tuple) আছে তাকে **Cardinality** বলা হয়।
 
-### Example
+### উদাহরণ
 
 | StudentID | Name   | Department | GPA  |
 | --------- | ------ | ---------- | ---- |
@@ -137,13 +137,13 @@ The number of tuples (rows) in a relation is called its **Cardinality**.
 | 2         | Karim  | EEE        | 3.50 |
 | 3         | Jannat | CSE        | 3.90 |
 
-Number of rows = 3
+মোট Row = 3
 
 ```text
 Cardinality = 3
 ```
 
-### Formula
+### সূত্র
 
 ```text
 Cardinality = Total Number of Rows
@@ -151,7 +151,7 @@ Cardinality = Total Number of Rows
 
 ---
 
-# 🎨 Visual Representation
+# 🎨 চিত্রের মাধ্যমে উপস্থাপন
 
 ```text
                     Relation Name
@@ -167,48 +167,48 @@ Cardinality = Total Number of Rows
 │2          │Karim   │EEE         │3.50  │
 │3          │Jannat  │CSE         │3.90  │
 └───────────┴────────┴────────────┴──────┘
-     ▲          ▲          ▲         ▲
-     │          │          │         │
-           Attributes (Columns)
+
+Attributes (Columns)
 
 Rows = Tuples
 
 Degree = 4
+
 Cardinality = 3
 ```
 
 ---
 
-# 📋 Quick Summary
+# 📋 সংক্ষিপ্ত সারাংশ
 
-| Component     | Meaning             |
-| ------------- | ------------------- |
-| Relation Name | Name of the table   |
-| Attribute     | Column              |
-| Tuple         | Row                 |
-| Domain        | Valid set of values |
-| Degree        | Number of columns   |
-| Cardinality   | Number of rows      |
+| উপাদান        | অর্থ               |
+| ------------- | ------------------ |
+| Relation Name | Table-এর নাম       |
+| Attribute     | Column             |
+| Tuple         | Row                |
+| Domain        | Valid Value-এর সেট |
+| Degree        | মোট Column সংখ্যা  |
+| Cardinality   | মোট Row সংখ্যা     |
 
 ---
 
 # 🎤 Interview Answer
 
-### What is the Anatomy of a Table in DBMS?
+### DBMS-এ একটি Table (Relation)-এর Anatomy কী?
 
-A table (relation) in DBMS consists of:
+DBMS-এ একটি Table বা Relation নিম্নলিখিত উপাদান নিয়ে গঠিত:
 
 * Relation Name
 * Attributes (Columns)
 * Tuples (Rows)
-* Domain (Valid values for attributes)
-* Degree (Number of columns)
-* Cardinality (Number of rows)
+* Domain
+* Degree
+* Cardinality
 
-These components collectively define the structure and organization of data in a relational database.
+এই উপাদানগুলো মিলে একটি Relational Database-এর Data Structure নির্ধারণ করে।
 
 ---
 
-# 🚀 Conclusion
+# 🚀 উপসংহার
 
-The anatomy of a relation is a fundamental concept in DBMS and Database Design. Understanding relation names, attributes, tuples, domains, degree, and cardinality is essential for designing efficient relational databases and performing normalization.
+Table বা Relation-এর Anatomy হলো DBMS-এর একটি মৌলিক ধারণা। Relation Name, Attribute, Tuple, Domain, Degree এবং Cardinality সম্পর্কে পরিষ্কার ধারণা থাকলে Database Design, Normalization এবং Interview Questions সহজে বোঝা যায়।
