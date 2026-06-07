@@ -1,19 +1,21 @@
 # 📚 Database Normalization (1NF, 2NF, 3NF)
 
-## 🎯 Introduction
+## 🎯 ভূমিকা
 
-**Normalization** is a database design technique used to organize tables in a way that:
+**Normalization** হলো Database Design-এর একটি গুরুত্বপূর্ণ Technique, যার মাধ্যমে Database-কে এমনভাবে Organize করা হয় যাতে:
 
-* Reduces data redundancy
-* Avoids anomalies (Insert, Update, Delete)
-* Improves data integrity
-* Makes database more efficient and scalable
+* Data Redundancy কমে
+* Insert, Update এবং Delete Anomaly দূর হয়
+* Data Integrity বৃদ্ধি পায়
+* Database আরও Efficient এবং Scalable হয়
 
-> In simple words: Normalization means breaking a big messy table into smaller well-structured tables.
+### সহজ ভাষায়
+
+> Normalization হলো একটি বড় এবং অগোছালো Table-কে ছোট, Logical এবং Well-Structured Table-এ ভাগ করার প্রক্রিয়া।
 
 ---
 
-# 📊 Example (Unnormalized Table)
+# 📊 উদাহরণ (Unnormalized Table)
 
 | StudentID | StudentName | Courses   |
 | --------- | ----------- | --------- |
@@ -21,26 +23,30 @@
 | 102       | Karim       | DBMS      |
 | 103       | Jannat      | OOP, DSA  |
 
-👉 Problem:
+---
 
-* Multiple values in a single column (Courses)
-* Hard to query and maintain
+## ❌ সমস্যা
+
+* একটি Column-এ একাধিক Value রয়েছে
+* Query করা কঠিন
+* Data Maintain করা কঠিন
+* Data Redundancy তৈরি হয়
 
 ---
 
 # 1️⃣ First Normal Form (1NF)
 
-## 📖 Definition
+## 📖 1NF কী?
 
-A table is in **1NF** if:
+একটি Table তখনই **1NF (First Normal Form)**-এ থাকবে যদি:
 
-* Each column contains atomic (single) values
-* No repeating groups or arrays
-* Each record is unique
+* প্রতিটি Column-এ Atomic (Single) Value থাকে
+* কোনো Repeating Group না থাকে
+* প্রতিটি Record Unique হয়
 
 ---
 
-## ❌ Before 1NF
+## ❌ 1NF-এর আগে
 
 | StudentID | StudentName | Courses   |
 | --------- | ----------- | --------- |
@@ -48,7 +54,7 @@ A table is in **1NF** if:
 
 ---
 
-## ✅ After 1NF
+## ✅ 1NF-এর পরে
 
 | StudentID | StudentName | Course |
 | --------- | ----------- | ------ |
@@ -57,27 +63,37 @@ A table is in **1NF** if:
 
 ---
 
-## 🎯 Key Rule
+## 🎯 মূল নিয়ম
 
-```text id="1nf_rule"
-No multi-valued attributes allowed
+```text
+একটি Cell-এ একাধিক Value রাখা যাবে না
+```
+
+---
+
+## 🧠 মনে রাখার ট্রিক
+
+```text
+1NF
+=
+Atomic Values
 ```
 
 ---
 
 # 2️⃣ Second Normal Form (2NF)
 
-## 📖 Definition
+## 📖 2NF কী?
 
-A table is in **2NF** if:
+একটি Table তখনই **2NF (Second Normal Form)**-এ থাকবে যদি:
 
-* It is already in 1NF
-* No Partial Dependency exists
-* All non-key attributes depend on the full primary key
+* Table ইতোমধ্যে 1NF-এ থাকে
+* কোনো Partial Dependency না থাকে
+* সব Non-Key Attribute সম্পূর্ণ Primary Key-এর উপর নির্ভরশীল হয়
 
 ---
 
-## ❌ Problem (Partial Dependency)
+## ❌ সমস্যা (Partial Dependency)
 
 ### Enrollment Table
 
@@ -86,16 +102,27 @@ A table is in **2NF** if:
 | 101       | C1       | Rahim       | DBMS       |
 | 101       | C2       | Rahim       | OOP        |
 
-👉 Issue:
+---
 
-* StudentName depends only on StudentID
-* CourseName depends only on CourseID
+### সমস্যা কোথায়?
 
-This is Partial Dependency ❌
+```text
+StudentName → শুধুমাত্র StudentID-এর উপর নির্ভরশীল
+
+CourseName → শুধুমাত্র CourseID-এর উপর নির্ভরশীল
+```
+
+কিন্তু Primary Key হলো:
+
+```text
+(StudentID, CourseID)
+```
+
+এটিই Partial Dependency।
 
 ---
 
-## ✅ After 2NF
+## ✅ 2NF-এর পরে
 
 ### Students Table
 
@@ -123,42 +150,71 @@ This is Partial Dependency ❌
 
 ---
 
-## 🎯 Key Rule
+## 🎯 মূল নিয়ম
 
-```text id="2nf_rule"
-Remove partial dependency on composite key
+```text
+Composite Key-এর আংশিক নির্ভরতা দূর করতে হবে
+```
+
+---
+
+## 🧠 মনে রাখার ট্রিক
+
+```text
+2NF
+=
+Full Dependency
 ```
 
 ---
 
 # 3️⃣ Third Normal Form (3NF)
 
-## 📖 Definition
+## 📖 3NF কী?
 
-A table is in **3NF** if:
+একটি Table তখনই **3NF (Third Normal Form)**-এ থাকবে যদি:
 
-* It is already in 2NF
-* No Transitive Dependency exists
+* Table ইতোমধ্যে 2NF-এ থাকে
+* কোনো Transitive Dependency না থাকে
 
 ---
 
-## ❌ Problem (Transitive Dependency)
+## ❌ সমস্যা (Transitive Dependency)
 
 | StudentID | StudentName | DeptID | DeptName |
 | --------- | ----------- | ------ | -------- |
 | 101       | Rahim       | D1     | CSE      |
 | 102       | Karim       | D2     | EEE      |
 
-👉 Issue:
+---
 
-* StudentName → DeptID → DeptName
-* DeptName depends on DeptID, not StudentID
+### সমস্যা কোথায়?
 
-This is Transitive Dependency ❌
+```text
+StudentID
+    ↓
+DeptID
+    ↓
+DeptName
+```
+
+এখানে:
+
+```text
+DeptName সরাসরি StudentID-এর উপর নির্ভরশীল নয়
+```
+
+বরং:
+
+```text
+DeptName → DeptID-এর উপর নির্ভরশীল
+```
+
+এটিই Transitive Dependency।
 
 ---
 
-## ✅ After 3NF
+## ✅ 3NF-এর পরে
 
 ### Students Table
 
@@ -169,7 +225,7 @@ This is Transitive Dependency ❌
 
 ---
 
-### Department Table
+### Departments Table
 
 | DeptID | DeptName |
 | ------ | -------- |
@@ -178,72 +234,122 @@ This is Transitive Dependency ❌
 
 ---
 
-## 🎯 Key Rule
+## 🎯 মূল নিয়ম
 
-```text id="3nf_rule"
-Remove transitive dependency
+```text
+Indirect Dependency দূর করতে হবে
+```
+
+---
+
+## 🧠 মনে রাখার ট্রিক
+
+```text
+3NF
+=
+No Transitive Dependency
 ```
 
 ---
 
 # 📊 Normalization Summary
 
-| Normal Form | Rule                     | Goal                           |
-| ----------- | ------------------------ | ------------------------------ |
-| 1NF         | Atomic values            | Remove repeating groups        |
-| 2NF         | No partial dependency    | Full dependency on primary key |
-| 3NF         | No transitive dependency | Remove indirect dependency     |
+| Normal Form | নিয়ম                    | লক্ষ্য                      |
+| ----------- | ------------------------ | --------------------------- |
+| 1NF         | Atomic Values            | Repeating Group দূর করা     |
+| 2NF         | No Partial Dependency    | Full Dependency নিশ্চিত করা |
+| 3NF         | No Transitive Dependency | Indirect Dependency দূর করা |
 
 ---
 
-# 🔄 Full Flow Diagram
+# 🔄 Normalization Flow
 
-```text id="norm_flow"
+```text
 Unnormalized Table
         ↓
        1NF
-(No repeating groups)
+(Atomic Values)
+
         ↓
        2NF
-(Remove partial dependency)
+(Remove Partial Dependency)
+
         ↓
        3NF
-(Remove transitive dependency)
+(Remove Transitive Dependency)
 ```
 
 ---
 
-# 🧠 Easy Memory Trick
+# 🎯 Normalization কেন গুরুত্বপূর্ণ?
 
-```text id="memory_trick"
-1NF → Atomic values
-2NF → Full dependency
-3NF → No indirect dependency
-```
+Normalization:
 
----
+✅ Data Redundancy কমায়
 
-# 🎯 Why Normalization is Important?
+✅ Insert Anomaly দূর করে
 
-* Reduces Data Redundancy
-* Prevents Data Anomalies
-* Improves Data Consistency
-* Makes Database Efficient
+✅ Update Anomaly দূর করে
+
+✅ Delete Anomaly দূর করে
+
+✅ Data Consistency বৃদ্ধি করে
+
+✅ Data Integrity নিশ্চিত করে
 
 ---
 
 # 🎤 Interview Answer
 
-Normalization is the process of organizing data in a database to reduce redundancy and improve integrity. It consists of:
+### Normalization কী?
 
-* 1NF: Ensures atomic values and no repeating groups
-* 2NF: Removes partial dependency
-* 3NF: Removes transitive dependency
+Normalization হলো Database Design-এর একটি Technique, যার মাধ্যমে Data Redundancy কমানো এবং Data Integrity বৃদ্ধি করা হয়।
 
-Together, these normal forms help design efficient and scalable relational databases.
+Normalization-এর প্রধান ধাপগুলো হলো:
+
+### 1NF
+
+* Atomic Values নিশ্চিত করে
+* Repeating Group দূর করে
+
+### 2NF
+
+* Partial Dependency দূর করে
+
+### 3NF
+
+* Transitive Dependency দূর করে
+
+এই তিনটি Normal Form Database-কে আরও Efficient, Consistent এবং Scalable করে তোলে।
 
 ---
 
-# 🚀 Conclusion
+# 🧠 Quick Memory Trick
 
-Normalization is a fundamental concept in DBMS that ensures a clean, efficient, and reliable database design. Understanding 1NF, 2NF, and 3NF is essential for database design and technical interviews.
+```text
+1NF → Atomic Values
+
+2NF → Full Dependency
+
+3NF → No Indirect Dependency
+```
+
+---
+
+# 🚀 উপসংহার
+
+Normalization হলো Relational Database Design-এর অন্যতম গুরুত্বপূর্ণ ধারণা।
+
+সঠিকভাবে Normalization প্রয়োগ করলে:
+
+```text
+কম Redundancy
+       +
+উচ্চ Data Integrity
+       +
+কোনো Anomaly নেই
+       =
+ভালো Database Design
+```
+
+তাই Database Design, SQL Interview এবং System Design Interview-এর জন্য 1NF, 2NF এবং 3NF সম্পর্কে পরিষ্কার ধারণা থাকা অত্যন্ত গুরুত্বপূর্ণ।
