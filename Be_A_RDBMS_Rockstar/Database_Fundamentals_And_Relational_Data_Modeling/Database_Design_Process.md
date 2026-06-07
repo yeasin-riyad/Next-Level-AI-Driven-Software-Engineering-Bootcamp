@@ -1,29 +1,39 @@
-# 🏗️ Database Design Process
+# 🏗️ Database Design Process (ডেটাবেস ডিজাইন প্রক্রিয়া)
 
-## 🎯 Introduction
+## 🎯 ভূমিকা
 
-Database Design is the process of transforming business requirements into a structured database model that is efficient, scalable, maintainable, and consistent.
+Database Design হলো এমন একটি প্রক্রিয়া যেখানে Business Requirements-কে একটি Structured Database Model-এ রূপান্তর করা হয়, যাতে Database হয়:
 
-A well-designed database helps:
+* Efficient
+* Scalable
+* Maintainable
+* Consistent
 
-* Reduce data redundancy
-* Maintain data integrity
-* Improve query performance
-* Support future scalability
-* Simplify maintenance
+একটি ভালো Database Design:
+
+* Data Redundancy কমায়
+* Data Integrity নিশ্চিত করে
+* Query Performance উন্নত করে
+* ভবিষ্যতে Scalability নিশ্চিত করে
+* Maintenance সহজ করে
 
 ---
 
-# 📌 Why Database Design Matters
+# 📌 Database Design কেন গুরুত্বপূর্ণ?
 
-Poor database design can lead to:
+খারাপ Database Design-এর ফলে:
 
-* Duplicate data
-* Inconsistent records
-* Slow queries
-* Difficult maintenance
+❌ Duplicate Data
 
-Good database design ensures:
+❌ Inconsistent Records
+
+❌ Slow Queries
+
+❌ Maintenance জটিল হয়ে যায়
+
+---
+
+ভালো Database Design নিশ্চিত করে:
 
 ✅ Accuracy
 
@@ -35,25 +45,25 @@ Good database design ensures:
 
 ---
 
-# 📊 Example Project
+# 📊 উদাহরণ Project
 
-Suppose we are designing a **University Management System**.
+ধরুন আমরা একটি **University Management System** তৈরি করছি।
 
-The system needs to:
+সিস্টেমটি:
 
-* Store student information
-* Store teacher information
-* Store course information
-* Track enrollments
-* Track teaching assignments
+* Student Information সংরক্ষণ করবে
+* Teacher Information সংরক্ষণ করবে
+* Course Information সংরক্ষণ করবে
+* Enrollment Track করবে
+* Department Manage করবে
 
 ---
 
 # Step 1️⃣ Requirements Analysis
 
-Understand what the system needs to accomplish.
+প্রথমে বুঝতে হবে System কী কী কাজ করবে।
 
-### Example Requirements
+### উদাহরণ Requirements
 
 ```text
 Store Students
@@ -63,17 +73,17 @@ Manage Enrollments
 Manage Departments
 ```
 
-### Goal
+### লক্ষ্য
 
-Identify all business requirements before designing the database.
+Business Requirements সম্পূর্ণভাবে বোঝা।
 
 ---
 
-# Step 2️⃣ Identify Entities
+# Step 2️⃣ Entity চিহ্নিত করা
 
-Entities represent real-world objects whose data must be stored.
+Entity হলো Real-World Object যার Data Database-এ সংরক্ষণ করতে হবে।
 
-### Example Entities
+### উদাহরণ
 
 ```text
 Student
@@ -85,9 +95,9 @@ Enrollment
 
 ---
 
-# Step 3️⃣ Identify Attributes
+# Step 3️⃣ Attribute চিহ্নিত করা
 
-Attributes describe the properties of an entity.
+Attribute হলো Entity-এর বৈশিষ্ট্য (Properties)।
 
 ---
 
@@ -113,11 +123,11 @@ Attributes describe the properties of an entity.
 
 ---
 
-# Step 4️⃣ Define Primary Keys
+# Step 4️⃣ Primary Key নির্ধারণ করা
 
-Each entity should have a unique identifier.
+প্রতিটি Entity-এর একটি Unique Identifier থাকতে হবে।
 
-### Examples
+### উদাহরণ
 
 ```text
 StudentID
@@ -126,7 +136,9 @@ CourseID
 DepartmentID
 ```
 
-### Example Table
+---
+
+### Student Table
 
 | StudentID (PK) | Name  |
 | -------------- | ----- |
@@ -135,9 +147,9 @@ DepartmentID
 
 ---
 
-# Step 5️⃣ Identify Relationships
+# Step 5️⃣ Relationship নির্ধারণ করা
 
-Determine how entities interact with each other.
+Entity গুলোর মধ্যে সম্পর্ক নির্ধারণ করতে হবে।
 
 ---
 
@@ -147,7 +159,7 @@ Determine how entities interact with each other.
 Person ↔ Passport
 ```
 
-One person has one passport.
+একজন ব্যক্তির একটি Passport থাকে।
 
 ---
 
@@ -157,7 +169,7 @@ One person has one passport.
 Department → Students
 ```
 
-One department can have many students.
+একটি Department-এর অনেক Student থাকতে পারে।
 
 ---
 
@@ -167,17 +179,17 @@ One department can have many students.
 Student ↔ Course
 ```
 
-A student can take many courses.
+একজন Student অনেক Course নিতে পারে।
 
-A course can have many students.
+একটি Course অনেক Student নিতে পারে।
 
 ---
 
-# Step 6️⃣ Create an ER Diagram
+# Step 6️⃣ ER Diagram তৈরি করা
 
-ER (Entity Relationship) Diagrams visually represent entities and relationships.
+ER (Entity Relationship) Diagram Entity এবং Relationship-গুলোকে Visual আকারে দেখায়।
 
-### Example
+### উদাহরণ
 
 ```text
 Student
@@ -192,9 +204,9 @@ Course
 
 ---
 
-# Step 7️⃣ Convert ER Diagram into Tables
+# Step 7️⃣ ER Diagram কে Table-এ রূপান্তর করা
 
-Transform entities into relational tables.
+Entity গুলোকে Relational Table-এ রূপান্তর করতে হবে।
 
 ---
 
@@ -219,11 +231,11 @@ Transform entities into relational tables.
 
 ---
 
-# Step 8️⃣ Define Foreign Keys
+# Step 8️⃣ Foreign Key নির্ধারণ করা
 
-Foreign Keys establish relationships between tables.
+Foreign Key বিভিন্ন Table-এর মধ্যে Relationship তৈরি করে।
 
-### Example
+### উদাহরণ
 
 ```sql
 CREATE TABLE Enrollments(
@@ -240,9 +252,9 @@ CREATE TABLE Enrollments(
 
 ---
 
-# Step 9️⃣ Normalize the Database
+# Step 9️⃣ Database Normalize করা
 
-Normalization reduces redundancy and improves consistency.
+Normalization Data Redundancy কমায় এবং Consistency বৃদ্ধি করে।
 
 ---
 
@@ -253,9 +265,9 @@ Normalization reduces redundancy and improves consistency.
 | 101       | Rahim       | DBMS   |
 | 101       | Rahim       | OOP    |
 
-Problem:
+### সমস্যা
 
-❌ Duplicate student information
+❌ একই Student Information বারবার Store হচ্ছে।
 
 ---
 
@@ -266,29 +278,33 @@ Problem:
 | StudentID | Name |
 | --------- | ---- |
 
+---
+
 ### Courses
 
 | CourseID | Course |
 | -------- | ------ |
+
+---
 
 ### Enrollments
 
 | StudentID | CourseID |
 | --------- | -------- |
 
-Benefits:
+### সুবিধা
 
-✅ Reduced redundancy
+✅ Redundancy কমে
 
-✅ Better consistency
+✅ Consistency বাড়ে
 
 ---
 
-# Step 🔟 Add Constraints
+# Step 🔟 Constraints যোগ করা
 
-Constraints enforce data integrity.
+Constraints Data Integrity নিশ্চিত করে।
 
-### Examples
+### উদাহরণ
 
 ```sql
 PRIMARY KEY(StudentID)
@@ -306,7 +322,9 @@ NOT NULL(Name)
 CHECK(Credit > 0)
 ```
 
-### Common Constraints
+---
+
+### সাধারণ Constraints
 
 * PRIMARY KEY
 * FOREIGN KEY
@@ -317,45 +335,45 @@ CHECK(Credit > 0)
 
 ---
 
-# Step 1️⃣1️⃣ Create Indexes
+# Step 1️⃣1️⃣ Index তৈরি করা
 
-Indexes improve query performance.
+Index Query Performance উন্নত করে।
 
-### Example
+### উদাহরণ
 
 ```sql
 CREATE INDEX idx_email
 ON Students(Email);
 ```
 
-### Benefits
+### সুবিধা
 
-✅ Faster searches
+✅ Faster Search
 
-✅ Faster filtering
+✅ Faster Filtering
 
-✅ Faster joins
-
----
-
-# Step 1️⃣2️⃣ Test and Optimize
-
-Validate the design before deployment.
-
-### Check
-
-* Are relationships correct?
-* Is data duplication minimized?
-* Are queries efficient?
-* Are constraints working properly?
-
-### Goal
-
-Ensure performance, consistency, and scalability.
+✅ Faster Join Operations
 
 ---
 
-# 🔄 Complete Database Design Workflow
+# Step 1️⃣2️⃣ Testing এবং Optimization
+
+Deployment-এর আগে Design পরীক্ষা করতে হবে।
+
+### যাচাই করুন
+
+* Relationship সঠিক আছে কি?
+* Duplicate Data কমানো হয়েছে কি?
+* Query Fast কাজ করছে কি?
+* Constraints ঠিকমতো কাজ করছে কি?
+
+### লক্ষ্য
+
+Performance, Consistency এবং Scalability নিশ্চিত করা।
+
+---
+
+# 🔄 সম্পূর্ণ Database Design Workflow
 
 ```text
 Requirements Analysis
@@ -396,48 +414,48 @@ Testing & Optimization
 
 ---
 
-# 📋 Quick Summary
+# 📋 সংক্ষিপ্ত সারাংশ
 
-| Step | Task                   |
+| Step | কাজ                    |
 | ---- | ---------------------- |
 | 1    | Requirements Analysis  |
-| 2    | Identify Entities      |
-| 3    | Identify Attributes    |
-| 4    | Define Primary Keys    |
-| 5    | Identify Relationships |
-| 6    | Create ER Diagram      |
-| 7    | Convert to Tables      |
-| 8    | Define Foreign Keys    |
-| 9    | Normalize Database     |
-| 10   | Add Constraints        |
-| 11   | Create Indexes         |
-| 12   | Test & Optimize        |
+| 2    | Entity চিহ্নিত করা     |
+| 3    | Attribute চিহ্নিত করা  |
+| 4    | Primary Key নির্ধারণ   |
+| 5    | Relationship নির্ধারণ  |
+| 6    | ER Diagram তৈরি        |
+| 7    | Table-এ রূপান্তর       |
+| 8    | Foreign Key নির্ধারণ   |
+| 9    | Normalization          |
+| 10   | Constraints যোগ        |
+| 11   | Index তৈরি             |
+| 12   | Testing ও Optimization |
 
 ---
 
 # 🎤 Interview Answer
 
-### What are the steps involved in Database Design?
+### Database Design Process-এর ধাপগুলো কী?
 
-The Database Design Process typically includes:
+Database Design Process সাধারণত নিম্নলিখিত ধাপগুলো অনুসরণ করে:
 
 1. Requirements Analysis
-2. Identifying Entities
-3. Identifying Attributes
-4. Defining Primary Keys
-5. Identifying Relationships
-6. Creating an ER Diagram
-7. Converting ER Models into Tables
-8. Defining Foreign Keys
+2. Entity Identification
+3. Attribute Identification
+4. Primary Key Definition
+5. Relationship Identification
+6. ER Diagram Creation
+7. Convert ER Model to Tables
+8. Define Foreign Keys
 9. Normalization
-10. Adding Constraints
-11. Creating Indexes
+10. Add Constraints
+11. Create Indexes
 12. Testing and Optimization
 
-These steps help create a reliable, scalable, and efficient database system.
+এই ধাপগুলো অনুসরণ করলে একটি Reliable, Scalable এবং Efficient Database তৈরি করা যায়।
 
 ---
 
-# 🚀 Conclusion
+# 🚀 উপসংহার
 
-Database Design is a systematic process that transforms business requirements into a structured database schema. Following proper design principles ensures data consistency, better performance, easier maintenance, and long-term scalability.
+Database Design হলো একটি Structured Process যা Business Requirements-কে একটি কার্যকর Database Schema-তে রূপান্তর করে। সঠিকভাবে Database Design করলে Data Consistency, Performance, Maintainability এবং Scalability নিশ্চিত করা যায়।
