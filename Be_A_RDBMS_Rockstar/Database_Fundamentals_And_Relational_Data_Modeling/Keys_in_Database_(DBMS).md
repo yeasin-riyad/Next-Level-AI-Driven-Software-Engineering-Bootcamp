@@ -1,19 +1,19 @@
-# 🔑 Keys in Database (DBMS)
+# 🔑 DBMS-এ Keys (কী)
 
-## 🎯 Introduction
+## 🎯 ভূমিকা
 
-In a Relational Database Management System (RDBMS), a **Key** is an attribute or a set of attributes used to uniquely identify records and establish relationships between tables.
+Relational Database Management System (RDBMS)-এ **Key** হলো একটি Attribute অথবা একাধিক Attribute-এর সমষ্টি, যা Table-এর প্রতিটি Record-কে Uniquely Identify করতে এবং বিভিন্ন Table-এর মধ্যে Relationship তৈরি করতে ব্যবহৃত হয়।
 
-Keys play a crucial role in:
+Keys Database-এর অন্যতম গুরুত্বপূর্ণ ধারণা, কারণ এগুলো:
 
-* Uniquely identifying records
-* Preventing duplicate data
-* Maintaining data integrity
-* Creating relationships between tables
+* প্রতিটি Record-কে Uniquely Identify করে
+* Duplicate Data প্রতিরোধ করে
+* Data Integrity বজায় রাখে
+* বিভিন্ন Table-এর মধ্যে Relationship তৈরি করে
 
 ---
 
-# 📊 Example Tables
+# 📊 উদাহরণ Table
 
 ## Students
 
@@ -37,9 +37,11 @@ Keys play a crucial role in:
 
 # 1️⃣ Super Key
 
-A **Super Key** is any attribute or combination of attributes that can uniquely identify a record.
+## 📖 Super Key কী?
 
-### Example
+যেকোনো Attribute অথবা Attribute-এর Combination যা একটি Record-কে Uniquely Identify করতে পারে, তাকে **Super Key** বলে।
+
+### উদাহরণ
 
 ```text
 StudentID
@@ -48,28 +50,36 @@ Email
 (StudentID, Email)
 ```
 
-### Characteristics
+---
 
-✅ Uniquely identifies records
+### বৈশিষ্ট্য
 
-❌ May contain unnecessary attributes
+✅ প্রতিটি Record Uniquely Identify করে
+
+❌ অতিরিক্ত Attribute থাকতে পারে
 
 ---
 
 # 2️⃣ Candidate Key
 
-A **Candidate Key** is a minimal Super Key.
+## 📖 Candidate Key কী?
 
-### Example
+Minimal Super Key-কে **Candidate Key** বলা হয়।
+
+অর্থাৎ, এমন একটি Super Key যেখানে কোনো অপ্রয়োজনীয় Attribute নেই।
+
+### উদাহরণ
 
 ```text
 StudentID
 Email
 ```
 
-Both are unique and contain no unnecessary attributes.
+উভয়ই Unique এবং Minimal।
 
-### Characteristics
+---
+
+### বৈশিষ্ট্য
 
 ✅ Unique
 
@@ -79,9 +89,11 @@ Both are unique and contain no unnecessary attributes.
 
 # 3️⃣ Primary Key
 
-A **Primary Key** is the candidate key selected to uniquely identify records in a table.
+## 📖 Primary Key কী?
 
-### Example
+Candidate Key গুলোর মধ্যে যেটিকে Record-এর প্রধান Identifier হিসেবে নির্বাচন করা হয়, তাকে **Primary Key** বলা হয়।
+
+### SQL Example
 
 ```sql
 CREATE TABLE Students(
@@ -91,21 +103,25 @@ CREATE TABLE Students(
 );
 ```
 
-### Characteristics
+---
+
+### বৈশিষ্ট্য
 
 ✅ Unique
 
-✅ Cannot be NULL
+✅ NULL হতে পারে না
 
-✅ Only one Primary Key per table
+✅ প্রতি Table-এ মাত্র একটি Primary Key থাকে
 
 ---
 
 # 4️⃣ Alternate Key
 
-Candidate keys that are not selected as the Primary Key are called Alternate Keys.
+## 📖 Alternate Key কী?
 
-### Example
+Candidate Key গুলোর মধ্যে যেগুলো Primary Key হিসেবে নির্বাচিত হয় না, সেগুলোকে **Alternate Key** বলা হয়।
+
+### উদাহরণ
 
 Candidate Keys:
 
@@ -130,9 +146,11 @@ Email
 
 # 5️⃣ Composite Key
 
-A key formed using two or more attributes is called a Composite Key.
+## 📖 Composite Key কী?
 
-### Example
+দুই বা ততোধিক Attribute একত্রে একটি Unique Identifier তৈরি করলে তাকে **Composite Key** বলা হয়।
+
+### উদাহরণ
 
 | StudentID | CourseID |
 | --------- | -------- |
@@ -145,6 +163,8 @@ Composite Key:
 (StudentID, CourseID)
 ```
 
+---
+
 ### SQL Example
 
 ```sql
@@ -155,7 +175,9 @@ PRIMARY KEY(StudentID, CourseID)
 
 # 6️⃣ Foreign Key
 
-A Foreign Key is a field in one table that refers to the Primary Key of another table.
+## 📖 Foreign Key কী?
+
+একটি Table-এর এমন একটি Attribute যা অন্য Table-এর Primary Key-কে Reference করে, তাকে **Foreign Key** বলা হয়।
 
 ---
 
@@ -175,29 +197,36 @@ A Foreign Key is a field in one table that refers to the Primary Key of another 
 | 1            | 101            | DBMS   |
 | 2            | 102            | OOP    |
 
+---
+
 ### SQL Example
 
 ```sql
 CREATE TABLE Enrollments(
     EnrollmentID INT PRIMARY KEY,
     StudentID INT,
+
     FOREIGN KEY(StudentID)
     REFERENCES Students(StudentID)
 );
 ```
 
-### Purpose
+---
 
-* Establishes relationships
-* Maintains referential integrity
+### উদ্দেশ্য
+
+* Table-এর মধ্যে Relationship তৈরি করা
+* Referential Integrity বজায় রাখা
 
 ---
 
 # 7️⃣ Unique Key
 
-A Unique Key ensures that duplicate values are not allowed.
+## 📖 Unique Key কী?
 
-### Example
+Unique Key কোনো Column-এ Duplicate Value প্রবেশ করতে দেয় না।
+
+### SQL Example
 
 ```sql
 CREATE TABLE Students(
@@ -206,19 +235,23 @@ CREATE TABLE Students(
 );
 ```
 
-### Characteristics
+---
 
-✅ No duplicate values
+### বৈশিষ্ট্য
 
-✅ Usually allows NULL values (DBMS dependent)
+✅ Duplicate Value অনুমোদিত নয়
+
+✅ অনেক DBMS-এ NULL Allow করতে পারে
 
 ---
 
 # 8️⃣ Natural Key
 
-A key derived from real-world data is called a Natural Key.
+## 📖 Natural Key কী?
 
-### Examples
+বাস্তব জগতের (Real World) কোনো Unique Identifier ব্যবহার করে তৈরি Key-কে **Natural Key** বলা হয়।
+
+### উদাহরণ
 
 ```text
 National ID Number
@@ -230,15 +263,19 @@ Email Address
 
 # 9️⃣ Surrogate Key
 
-A system-generated key with no business meaning is called a Surrogate Key.
+## 📖 Surrogate Key কী?
 
-### Examples
+System Generated এমন একটি Key যার কোনো Business Meaning নেই, তাকে **Surrogate Key** বলা হয়।
+
+### উদাহরণ
 
 ```text
 StudentID = 101
 StudentID = 102
 StudentID = 103
 ```
+
+---
 
 ### SQL Example
 
@@ -248,7 +285,7 @@ StudentID INT AUTO_INCREMENT
 
 ---
 
-# 🎨 Relationship Between Keys
+# 🎨 Keys-এর মধ্যে সম্পর্ক
 
 ```text
 Super Key
@@ -272,27 +309,27 @@ Foreign Key (Table B)
 
 ---
 
-# 📋 Summary Table
+# 📋 সংক্ষিপ্ত সারাংশ
 
-| Key Type      | Purpose                              |
+| Key Type      | কাজ                                  |
 | ------------- | ------------------------------------ |
-| Super Key     | Uniquely identifies records          |
+| Super Key     | Record Uniquely Identify করে         |
 | Candidate Key | Minimal Super Key                    |
-| Primary Key   | Main identifier of a record          |
-| Alternate Key | Candidate key not chosen as PK       |
-| Composite Key | Combination of multiple columns      |
-| Foreign Key   | Creates relationships between tables |
-| Unique Key    | Prevents duplicate values            |
-| Natural Key   | Real-world unique identifier         |
-| Surrogate Key | System-generated identifier          |
+| Primary Key   | Record-এর প্রধান Identifier          |
+| Alternate Key | Primary Key না হওয়া Candidate Key   |
+| Composite Key | একাধিক Column-এর সমন্বয়ে Key        |
+| Foreign Key   | Table-এর মধ্যে Relationship তৈরি করে |
+| Unique Key    | Duplicate Data প্রতিরোধ করে          |
+| Natural Key   | Real-World Unique Identifier         |
+| Surrogate Key | System Generated Identifier          |
 
 ---
 
 # 🎤 Interview Answer
 
-### What are the different types of keys in DBMS?
+### DBMS-এ Keys-এর প্রকারভেদ কী কী?
 
-The main types of keys in DBMS are:
+DBMS-এ প্রধানত নিম্নলিখিত ধরনের Keys ব্যবহৃত হয়:
 
 * Super Key
 * Candidate Key
@@ -304,10 +341,10 @@ The main types of keys in DBMS are:
 * Natural Key
 * Surrogate Key
 
-Keys are used to uniquely identify records, maintain data integrity, and establish relationships between database tables.
+Keys-এর মূল কাজ হলো Record-কে Uniquely Identify করা, Data Integrity বজায় রাখা এবং বিভিন্ন Table-এর মধ্যে Relationship তৈরি করা।
 
 ---
 
-# 🚀 Conclusion
+# 🚀 উপসংহার
 
-Keys are one of the most fundamental concepts in DBMS. They help uniquely identify records, prevent data duplication, and create relationships between tables. A strong understanding of database keys is essential for database design, normalization, and technical interviews.
+Keys হলো DBMS-এর অন্যতম গুরুত্বপূর্ণ ধারণা। এগুলো Database-এর Record-গুলোকে Unique রাখে, Duplicate Data প্রতিরোধ করে এবং Table-গুলোর মধ্যে সম্পর্ক তৈরি করতে সাহায্য করে। Database Design, Normalization এবং Technical Interview-এর জন্য Keys সম্পর্কে পরিষ্কার ধারণা থাকা অত্যন্ত গুরুত্বপূর্ণ।
